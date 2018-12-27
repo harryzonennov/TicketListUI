@@ -1,0 +1,142 @@
+<core:View xmlns:core="sap.ui.core"
+           xmlns="sap.uxap"
+           xmlns:layout="sap.ui.layout"
+           xmlns:f="sap.ui.layout.form"
+           xmlns:m="sap.m"
+           xmlns:mvc="sap.ui.core.mvc"
+           controllerName="Ticket.controller.TicketDetail" height="100%">
+    <ObjectPageLayout id="TicketDetailPage" enableLazyLoading="false" alwaysShowContentHeader="true" showTitleInHeaderContent="false"
+                      showHeaderContent="true">
+        <headerTitle>
+            <ObjectPageHeader objectTitle="Ticket - {TicketId} - {Subject}">
+                <actions>
+                    <ObjectPageHeaderActionButton id="editButton" icon="sap-icon://edit" type="Emphasized" tooltip="edit" press="onEdit"></ObjectPageHeaderActionButton>
+                    <ObjectPageHeaderActionButton id="backButton" text="back" hideText="false" type="Emphasized" tooltip="back to"
+                                                  press="onNavBack"></ObjectPageHeaderActionButton>
+                    <ObjectPageHeaderActionButton id="saveButton"  visible="{TransMode>edit}" type="Emphasized" text="Save" hideText="false" press="onSave"></ObjectPageHeaderActionButton>
+                    <ObjectPageHeaderActionButton id="cancelButton"  visible="{TransMode>edit}" text="Cancel" hideText="false" press="onCancel"></ObjectPageHeaderActionButton>
+                </actions>
+            </ObjectPageHeader>
+        </headerTitle>
+        <headerContent>
+            <layout:VerticalLayout>
+                <m:ObjectStatus title="Subject" text="{Subject}"/>
+            </layout:VerticalLayout>
+        </headerContent>
+        <sections id="TicketDetialSection">
+            <ObjectPageSection  id="overviewSec-Display" visible="{TransMode>display}" title="Overview">
+                <subSections>
+                    <ObjectPageSubSection title="General Data">
+                        <blocks>
+                            <f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1"
+                                          columnsM="1">
+                                <f:content>
+                                    <m:Label text="Ticket ID"/>
+                                    <m:Text text="{TicketId}"/>
+                                    <m:Label text="Ticket Status"/>
+                                    <m:Text text="{Subject}"/>
+                                </f:content>
+                            </f:SimpleForm>
+                        </blocks>
+                    </ObjectPageSubSection>
+                    <ObjectPageSubSection title="Customer">
+                        <blocks>
+                            <f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1"
+                                          columnsM="1">
+                                <f:content>
+                                    <m:Label text="Cuatomer Name"/>
+                                    <m:Text text="{AccountName}"/>
+                                    <m:Label text="Customer Contact"/>
+                                    <m:Text text="{ContactLastName} {ContactFirstName}"/>
+                                </f:content>
+                            </f:SimpleForm>
+                        </blocks>
+                    </ObjectPageSubSection>
+                    <ObjectPageSubSection title="Product">
+                        <blocks>
+                            <f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1"
+                                          columnsM="1">
+                                <f:content>
+                                    <m:Label text="Product ID"/>
+                                    <m:Text text="{ProductId}"/>
+                                    <m:Label text="Product Name"/>
+                                    <m:Text text="{ProductName}"/>
+                                </f:content>
+                            </f:SimpleForm>
+                        </blocks>
+                    </ObjectPageSubSection>
+                    <ObjectPageSubSection title="Addtional Information">
+                        <blocks>
+                            <f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1"
+                                          columnsM="1">
+                                <f:content>
+                                    <m:Label text="Completion Time"/>
+                                    <m:Text text="{InitialReviewCompleteDateTime}"/>
+
+                                </f:content>
+                            </f:SimpleForm>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+            <ObjectPageSection id="overviewSec-Edit" visible="{TransMode>edit}" title="Overview">
+                <subSections>
+                    <ObjectPageSubSection title="General Data">
+                        <blocks>
+                            <f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1"
+                                          columnsM="1">
+                                <f:content>
+                                    <m:Label text="Ticket ID"/>
+                                    <m:Text text="{TicketId}"/>
+
+                                </f:content>
+                            </f:SimpleForm>
+                        </blocks>
+                    </ObjectPageSubSection>
+                    <ObjectPageSubSection title="Customer">
+                        <blocks>
+                            <f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1"
+                                          columnsM="1">
+                                <f:content>
+                                    <m:Label text="Customer Name"/>
+
+                                </f:content>
+                            </f:SimpleForm>
+                        </blocks>
+                    </ObjectPageSubSection>
+                    <ObjectPageSubSection title="Product">
+                        <blocks>
+                            <f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1"
+                                          columnsM="1">
+                                <f:content>
+                                    <m:Label text="Product ID"/>
+                                    <m:Input value="{ProductId}" id="productInput" type="Text" placeholder="Enter Product ..." showSuggestion="true" showValueHelp="true"
+                                             valueHelpRequest="handleProductValueHelp" suggestionItems="{/Product}">
+                                        <m:suggestionItems>
+                                            <core:Item text="{productName}"/>
+                                        </m:suggestionItems>
+                                    </m:Input>
+                                    <m:Label text="Product Name"/>
+                                    <!--<m:Text text="{DisplayProduct>ProductName}" visible="{DisplayProduct>bProductSelected}"/>-->
+                                    <!--<m:Text text="{ProductName}" visible="{!DisplayProduct>bProductSelected}"/>-->
+                                </f:content>
+                            </f:SimpleForm>
+                        </blocks>
+                    </ObjectPageSubSection>
+                    <ObjectPageSubSection title="Addtional Information">
+                        <blocks>
+                            <f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1"
+                                          columnsM="1">
+                                <f:content>
+                                    <m:Label text="Completion Time"/>
+
+                                </f:content>
+                            </f:SimpleForm>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+        </sections>
+    </ObjectPageLayout>
+</core:View>

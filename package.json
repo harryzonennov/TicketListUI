@@ -1,0 +1,12 @@
+{
+  "name": "TicketListUI",
+  "version": "0.0.1",
+  "description": "Local Ticket UI with OData V4",
+  "scripts": {
+    "proxy": "node proxy.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "cors-anywhere": "^0.4.1"
+  }
+}

@@ -1,0 +1,12 @@
+<mvc:View
+        controllerName="Ticket.controller.App"
+        xmlns:mvc="sap.ui.core.mvc"
+        displayBlock="true"
+        busy="{appView>/busy}"
+        busyIndicatorDelay="{appView>/delay}"
+        xmlns="sap.m">
+    <App id="ticketApp">
+        <pages>
+        </pages>
+    </App>
+</mvc:View>

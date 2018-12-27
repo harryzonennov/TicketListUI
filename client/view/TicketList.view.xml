@@ -1,0 +1,46 @@
+<mvc:View
+        controllerName="Ticket.controller.TicketList"
+        xmlns:mvc="sap.ui.core.mvc"
+        displayBlock="true"
+        busy="{appView>/busy}"
+        busyIndicatorDelay="{appView>/delay}"
+        xmlns="sap.m">
+    <Page title="Ticket List">
+        <headerContent>
+            <Button id="addButton" icon="sap-icon://add" press=".addTicket" type="Transparent"/>
+        </headerContent>
+        <content>
+            <Table id='ticketList'  items="{path:'/Ticket'}"  class="TicketView">
+                <columns>
+                    <Column><Text text="Ticket ID"/></Column>
+                    <Column><Text text="Subject"/></Column>
+                    <Column><Text text="Account ID"/></Column>
+                    <Column><Text text="Status"/></Column>
+                    <Column><Text text="Priority SLA"/></Column>
+                    <Column><Text text="Customer"/></Column>
+                    <Column><Text text="Last Update Date"/></Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Navigation" press="onTicketPress">
+                        <cells>
+                            <Text text="{TicketId}"></Text>
+                            <Text text="{Subject}"></Text>
+                            <Text text="{AccountId}"></Text>
+                            <Text text="{StatusCode}"></Text>
+                            <Text text="{PriorityCode}"></Text>
+                            <Text text="{InitialReviewDueDateTime}"></Text>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <footer>
+            <OverflowToolbar id="otbFooter">
+                <!--<ToolbarSpacer/>-->
+                <!--<Button id="addButton" icon="sap-icon://add" press=".addTicket" type="Transparent"/>-->
+                <!--<Button id="saveButton" text="Save" type="Emphasized" press="onSave" visible="false"/>-->
+                <!--<Button id="cancelButton" text="Cancel" type="Transparent" press="onCancel" visible="false"/>-->
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>
