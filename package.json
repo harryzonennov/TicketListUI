@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "Local Ticket UI with OData V4",
   "scripts": {
-    "proxy": "node proxy.js"
+    "proxy": "node proxy.js",
+    "http-start": "npm run proxy | http-server localhost -p 8081"
   },
   "dependencies": {},
   "devDependencies": {
